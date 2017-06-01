@@ -1,1 +1,1 @@
-module.exports = require('src/mock-nodecg');
+module.exports = require('./src/mock-nodecg');
