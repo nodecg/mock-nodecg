@@ -1,0 +1,57 @@
+{
+  "name": "mock-nodecg",
+  "version": "1.0.0",
+  "description": "A mock of some of the NodeCG APIs that can be used in unit tests, for both Node.js and the browser.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "test": "eslint .",
+    "prerelease": "npm t",
+    "release": "standard-version -s",
+    "postrelease": "npm publish && git push --follow-tags",
+    "update-coc": "weallbehave -o . && git add CODE_OF_CONDUCT.md && git commit -m 'docs(coc): updated CODE_OF_CONDUCT.md'",
+    "update-contrib": "weallcontribute -o . && git add CONTRIBUTING.md && git commit -m 'docs(contributing): updated CONTRIBUTING.md'"
+  },
+  "keywords": [
+    "nodecg",
+    "mock",
+    "test",
+    "helper",
+    "unit",
+    "browser"
+  ],
+  "author": {
+    "name": "Alex Van Camp",
+    "email": "email@alexvan.camp",
+    "url": "https://alexvan.camp/",
+    "twitter": "vancamp"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "clone": "^2.1.1",
+    "eslint": "^3.19.0",
+    "eslint-config-xo": "^0.18.2",
+    "standard-version": "^4.0.0",
+    "weallbehave": "^1.2.0",
+    "weallcontribute": "^1.0.8",
+    "webpack": "^2.6.1"
+  },
+  "dependencies": {
+    "sinon": "^2.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodecg/mock-nodecg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nodecg/mock-nodecg/issues"
+  },
+  "eslintConfig": {
+    "extends": "xo/esnext"
+  },
+  "files": [
+    "index.js",
+    "src"
+  ]
+}

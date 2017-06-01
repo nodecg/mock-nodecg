@@ -1,0 +1,28 @@
+{
+  "name": "mock-nodecg",
+  "description": "A mock of some of the NodeCG APIs that can be used in unit tests, for both Node.js and the browser.",
+  "main": "dist/mock-nodecg.js",
+  "authors": [
+    "Alex Van Camp"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "nodecg",
+    "mock",
+    "test",
+    "helper",
+    "unit",
+    "browser"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "index.js",
+    "src",
+    "!dist"
+  ]
+}
