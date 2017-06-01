@@ -1,16 +1,6 @@
 # mock-nodecg [![license](https://img.shields.io/npm/l/mock-nodecg.svg)](https://npm.im/mock-nodecg) [![Build Status](https://travis-ci.org/nodecg/mock-nodecg.svg?branch=master)](https://travis-ci.org/nodecg/mock-nodecg) [![Join the chat at https://gitter.im/nodecg/nodecg](https://badges.gitter.im/nodecg/nodecg.svg)](https://gitter.im/nodecg/nodecg?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[`mock-nodecg`](https://github.com/NodeCG/mock-nodecg) adds the ability to connect to 1-4 instances of OBS (via [`obs-websocket`](https://github.com/Palakis/obs-websocket)) to your NodeCG bundle. It has two parts:
-- The backend: [`mock-nodecg`](packages/mock-nodecg), an npm package
-    - This is server-side code that runs in Node.js.
-- The frontend: [`nodecg-widget-obs`](packages/nodecg-widget-obs), a [Polymer](https://www.polymer-project.org/) element
-    - This is client-side code that runs in your browser.
-
-Once your bundle has connected to OBS, you'll have access to a set of Replicants and Messages that you can use to both control OBS and react to events originating from OBS. For example, you could have code that changes based on what scene is active, or implement a "Transition" button that uses a different transition depending on what scene is being transitioned to. There's a lot of possibilities!
-
-You can think of `mock-nodecg` sort of like a set of mixins for your NodeCG bundle. It is meant for use with NodeCG v0.9. This documentation goes over how to install both `mock-nodecg` and `nodecg-widget-obs` with the default settings to get you up and running as fast as possible.
-
-Internally, `mock-nodecg` uses [`obs-websocket-js`](https://github.com/haganbmj/obs-websocket-js) to communicate with `obs-websocket`.
+A mock of some of the NodeCG APIs that can be used in unit tests, for both Node.js and the browser. Meant to be used with NodeCG v0.9.
 
 ## Install
 
