@@ -24,5 +24,6 @@
     "index.js",
     "src",
     "!dist"
-  ]
+  ],
+  "version": "1.0.0"
 }

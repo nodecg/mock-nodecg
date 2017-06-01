@@ -8,7 +8,7 @@
     "watch": "webpack --watch",
     "test": "eslint .",
     "prerelease": "npm t",
-    "release": "standard-version -s",
+    "release": "standard-version",
     "postrelease": "npm publish && git push --follow-tags",
     "update-coc": "weallbehave -o . && git add CODE_OF_CONDUCT.md && git commit -m 'docs(coc): updated CODE_OF_CONDUCT.md'",
     "update-contrib": "weallcontribute -o . && git add CONTRIBUTING.md && git commit -m 'docs(contributing): updated CONTRIBUTING.md'"
