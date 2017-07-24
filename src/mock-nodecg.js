@@ -11,6 +11,10 @@ class MockReplicant extends EventEmitter {
 		super();
 		this.value = {};
 	}
+
+	validate() {
+		return true;
+	}
 }
 
 class MockNodeCGLogger {
