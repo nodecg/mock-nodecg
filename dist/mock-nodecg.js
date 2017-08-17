@@ -448,6 +448,16 @@ class MockNodeCG extends EventEmitter {
 		this.on(messageName, handler);
 	}
 
+	unlisten(messageName, handler) {
+		const listeners = this.listeners(messageName);
+		if (listeners.includes(handler)) {
+			this.removeListener(messageName, handler);
+			return true;
+		}
+
+		return false;
+	}
+
 	static Replicant() {
 		return new MockReplicant();
 	}
