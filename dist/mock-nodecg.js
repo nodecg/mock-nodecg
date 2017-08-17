@@ -70,6 +70,7 @@
 /* 0 */
 /***/ (function(module, exports) {
 
+/* global window */
 module.exports = window.sinon;
 
 
@@ -398,6 +399,10 @@ class MockReplicant extends EventEmitter {
 		super();
 		this.value = {};
 	}
+
+	validate() {
+		return true;
+	}
 }
 
 class MockNodeCGLogger {
@@ -415,7 +420,9 @@ class MockNodeCG extends EventEmitter {
 		super();
 		this.bundleName = bundleName;
 		this.sendMessage = typeof sinon === 'undefined' ? function () {} : sinon.stub();
+		this.mount = typeof sinon === 'undefined' ? function () {} : sinon.stub();
 		this.replicantsMap = new Map();
+		this.log = new MockNodeCGLogger();
 	}
 
 	get Logger() {
