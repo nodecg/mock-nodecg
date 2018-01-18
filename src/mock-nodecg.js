@@ -35,6 +35,11 @@ class MockNodeCG extends EventEmitter {
 		this.mount = typeof sinon === 'undefined' ? function () {} : sinon.stub();
 		this.replicantsMap = new Map();
 		this.log = new MockNodeCGLogger();
+		this.util = {
+			authCheck(req, res, next) {
+				return next();
+			}
+		};
 	}
 
 	get Logger() {
