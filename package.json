@@ -1,6 +1,6 @@
 {
   "name": "mock-nodecg",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "A mock of some of the NodeCG APIs that can be used in unit tests, for both Node.js and the browser.",
   "main": "index.js",
   "scripts": {
