@@ -394,10 +394,56 @@ const EventEmitter = __webpack_require__(1);
 // Packages
 const sinon = __webpack_require__(0);
 
+const declaredReplicants = {};
+
 class MockReplicant extends EventEmitter {
-	constructor() {
+	constructor(name, namespace) {
+		console.log('name: %s, namespace: %s', name, namespace);
+		if (!name) {
+			throw new Error('You must provide a name.');
+		}
+
+		if (!namespace) {
+			throw new Error('You must provide a namespace.');
+		}
+
+		// If replicant already exists, return that.
+		if ({}.hasOwnProperty.call(declaredReplicants, namespace)) {
+			if ({}.hasOwnProperty.call(declaredReplicants[namespace], name)) {
+				return declaredReplicants[namespace][name];
+			}
+		} else {
+			declaredReplicants[namespace] = {};
+		}
+
 		super();
-		this.value = {};
+		this.name = name;
+		this.namespace = namespace;
+
+		declaredReplicants[namespace][name] = this;
+
+		// Prevents one-time change listeners from potentially being called twice.
+		// https://github.com/nodecg/nodecg/issues/296
+		const originalOnce = this.once.bind(this);
+		this.once = (event, listener) => {
+			if (event === 'change' && declaredReplicants[namespace][name] && this.value !== undefined) {
+				return listener(this.value);
+			}
+
+			return originalOnce(event, listener);
+		};
+
+		/* When a new "change" listener is added, chances are that the developer wants it to be initialized ASAP.
+		 * However, if this replicant has already been declared previously in this context, their "change"
+		 * handler will *not* get run until another change comes in, which may never happen for Replicants
+		 * that change very infrequently.
+		 * To resolve this, we immediately invoke all new "change" handlers if appropriate.
+		 */
+		this.on('newListener', (event, listener) => {
+			if (event === 'change' && declaredReplicants[namespace][name] && this.value !== undefined) {
+				listener(this.value);
+			}
+		});
 	}
 
 	validate() {
@@ -421,8 +467,12 @@ class MockNodeCG extends EventEmitter {
 		this.bundleName = bundleName;
 		this.sendMessage = typeof sinon === 'undefined' ? function () {} : sinon.stub();
 		this.mount = typeof sinon === 'undefined' ? function () {} : sinon.stub();
-		this.replicantsMap = new Map();
 		this.log = new MockNodeCGLogger();
+		this.util = {
+			authCheck(req, res, next) {
+				return next();
+			}
+		};
 	}
 
 	get Logger() {
@@ -430,18 +480,8 @@ class MockNodeCG extends EventEmitter {
 	}
 
 	Replicant(name) {
-		if (this.replicantsMap.has(name)) {
-			return this.replicantsMap.get(name);
-		}
-
-		const replicant = MockNodeCG.Replicant(); // eslint-disable-line new-cap
-		this.replicantsMap.set(name, replicant);
-
-		if (name === '_obs:namespaces') {
-			replicant.value = [];
-		}
-
-		return replicant;
+		console.log('foo name:', name);
+		return MockNodeCG.Replicant(name, this.bundleName); // eslint-disable-line new-cap
 	}
 
 	listenFor(messageName, handler) {
@@ -458,8 +498,8 @@ class MockNodeCG extends EventEmitter {
 		return false;
 	}
 
-	static Replicant() {
-		return new MockReplicant();
+	static Replicant(...args) {
+		return new MockReplicant(...args);
 	}
 }
 
