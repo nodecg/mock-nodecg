@@ -398,7 +398,6 @@ const declaredReplicants = {};
 
 class MockReplicant extends EventEmitter {
 	constructor(name, namespace) {
-		console.log('name: %s, namespace: %s', name, namespace);
 		if (!name) {
 			throw new Error('You must provide a name.');
 		}
@@ -480,7 +479,6 @@ class MockNodeCG extends EventEmitter {
 	}
 
 	Replicant(name) {
-		console.log('foo name:', name);
 		return MockNodeCG.Replicant(name, this.bundleName); // eslint-disable-line new-cap
 	}
 
