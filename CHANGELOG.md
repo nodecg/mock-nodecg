@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/nodecg/mock-nodecg/compare/v1.4.0...v1.5.0) (2018-04-23)
+
+
+### Features
+
+* automatically invoke `change` handlers, just like real NodeCG ([4b3ecde](https://github.com/nodecg/mock-nodecg/commit/4b3ecde))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/nodecg/mock-nodecg/compare/v1.3.0...v1.4.0) (2018-01-18)
 
