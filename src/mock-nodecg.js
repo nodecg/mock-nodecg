@@ -111,6 +111,10 @@ class MockNodeCG extends EventEmitter {
 	static Replicant(...args) {
 		return new MockReplicant(...args);
 	}
+
+	static get declaredReplicants() {
+		return declaredReplicants;
+	}
 }
 
 if (typeof module !== 'undefined') {
