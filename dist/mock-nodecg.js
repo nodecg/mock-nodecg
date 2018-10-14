@@ -503,6 +503,21 @@ class MockNodeCG extends EventEmitter {
 	static get declaredReplicants() {
 		return declaredReplicants;
 	}
+
+	static waitForReplicants(...replicants) {
+		return new Promise(resolve => {
+			const numReplicants = replicants.length;
+			let declaredReplicants = 0;
+			replicants.forEach(replicant => {
+				replicant.once('change', () => {
+					declaredReplicants++;
+					if (declaredReplicants >= numReplicants) {
+						resolve();
+					}
+				});
+			});
+		});
+	}
 }
 
 if (true) {
