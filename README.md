@@ -1,6 +1,6 @@
 # mock-nodecg [![license](https://img.shields.io/npm/l/mock-nodecg.svg)](https://npm.im/mock-nodecg) [![Build Status](https://travis-ci.org/nodecg/mock-nodecg.svg?branch=master)](https://travis-ci.org/nodecg/mock-nodecg) [![Join the chat at https://gitter.im/nodecg/nodecg](https://badges.gitter.im/nodecg/nodecg.svg)](https://gitter.im/nodecg/nodecg?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-A mock of some of the NodeCG APIs that can be used in unit tests, for both Node.js and the browser. Meant to be used with NodeCG v0.9.
+A mock of some of the NodeCG APIs that can be used in unit tests, for both Node.js and the browser. Meant to be used with NodeCG v1.
 
 ## Install
 
