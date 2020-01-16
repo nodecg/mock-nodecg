@@ -60,6 +60,16 @@ class MockReplicant extends EventEmitter {
 	validate() {
 		return true;
 	}
+
+	get value() {
+		return this._value;
+	}
+
+	set value(newValue) {
+		const oldValue = this._value;
+		this._value = newValue;
+		this.emit('change', newValue, oldValue);
+	}
 }
 
 class MockNodeCGLogger {
